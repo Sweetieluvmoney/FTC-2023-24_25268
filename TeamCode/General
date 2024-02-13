@@ -1,0 +1,64 @@
+package org.firstinspires.ftc.teamcode;
+
+import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+import com.qualcomm.robotcore.hardware.CRServo;
+import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
+
+public class AllForOne extends OpMode {
+    private DcMotor LeftHand = null;
+    private DcMotor RightHand = null;
+    private DcMotor LeftDrive = null;
+    private DcMotor RightDrive = null;
+    private CRServo ServoGrip = null;
+    private CRServo ServoArm = null;
+
+    @Override()
+    public void init() {
+        LeftHand = hardwareMap.get(DcMotor.class, "LeftHand");
+        RightHand = hardwareMap.get(DcMotor.class, "RightHand");
+
+        LeftDrive  = hardwareMap.get(DcMotor.class, "LeftDrive");
+        RightDrive = hardwareMap.get(DcMotor.class, "RightDrive");
+
+        ServoGrip = hardwareMap.get(CRServo.class, "ServoGrip");
+        ServoArm = hardwareMap.get(CRServo.class, "ServoArm");
+
+        LeftHand.setDirection(DcMotor.Direction.FORWARD);
+        RightHand.setDirection(DcMotor.Direction.REVERSE);
+
+        LeftDrive.setDirection(DcMotor.Direction.FORWARD);
+        RightDrive.setDirection(DcMotor.Direction.REVERSE);
+
+        ServoGrip.setDirection(DcMotorSimple.Direction.FORWARD);
+        ServoArm.setDirection(DcMotorSimple.Direction.REVERSE);
+
+    }
+
+    @Override()
+    public void init_loop() {
+
+    }
+
+    @Override
+    public void start() {
+
+    }
+
+    @Override()
+    public void loop() {
+        LeftHand.setPower(gamepad1.left_stick_x);
+        RightHand.setPower(gamepad1.right_stick_x );
+
+        LeftDrive.setPower(gamepad1.left_stick_y);
+        RightDrive.setPower(gamepad1.right_stick_y);
+
+        ServoGrip.setPower(gamepad2.left_stick_x);
+        ServoArm.setPower(gamepad2.right_stick_x);
+    }
+
+    @Override
+    public void stop() {
+
+    }
+}
